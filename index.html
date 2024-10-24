@@ -1,10 +1,14 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>French Learning Tracker</title>
+    <title>French From the Start - Season 2</title>
+    <!-- Add Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Arimo&display=swap" rel="stylesheet">
     <style>
         body { 
-            font-family: Arial; 
+            font-family: 'Arimo', sans-serif;
             margin: 20px; 
             padding: 20px; 
             background: #f5f5f5;
@@ -22,6 +26,25 @@
             margin: 10px 0;
             padding: 15px;
             border-radius: 5px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .episode-info {
+            flex: 1;
+        }
+        .episode-title {
+            margin: 0;
+            color: #333;
+            font-size: 18px;
+            font-family: 'Arimo', sans-serif;
+        }
+        .episode-level {
+            color: #666;
+            font-size: 14px;
+            margin-top: 5px;
         }
         .button {
             background: #03015b;
@@ -32,21 +55,107 @@
             cursor: pointer;
             text-decoration: none;
             display: inline-block;
-            margin: 5px 0;
+            font-weight: normal;
+            font-family: 'Arimo', sans-serif;
+            transition: opacity 0.2s;
+        }
+        .button:hover {
+            opacity: 0.9;
         }
     </style>
 </head>
 <body>
     <div class="container">
         <h1>French From the Start - Season 2</h1>
+
         <div class="episode">
-            <h3>Episode 1: Moving House - Le Déménagement</h3>
+            <div class="episode-info">
+                <h3 class="episode-title">Moving House - Le Déménagement</h3>
+                <div class="episode-level">Beginner 01</div>
+            </div>
             <a href="https://open.spotify.com/episode/2YNKRg1EaPYvgThs1cibda" class="button" target="_blank">Listen on Spotify</a>
         </div>
+
         <div class="episode">
-            <h3>Episode 2: A Cooking Lesson - Une leçon de cuisine</h3>
+            <div class="episode-info">
+                <h3 class="episode-title">A Cooking Lesson - Une leçon de cuisine</h3>
+                <div class="episode-level">Beginner 02</div>
+            </div>
             <a href="https://open.spotify.com/episode/2TpmEqW3hZdKfqYZsolT2u" class="button" target="_blank">Listen on Spotify</a>
         </div>
+
+        <div class="episode">
+            <div class="episode-info">
+                <h3 class="episode-title">To The Bakery - À la boulangerie</h3>
+                <div class="episode-level">Beginner 03</div>
+            </div>
+            <a href="https://open.spotify.com/episode/08A20m0p38bt36UXMa03Ly" class="button" target="_blank">Listen on Spotify</a>
+        </div>
+
+        <div class="episode">
+            <div class="episode-info">
+                <h3 class="episode-title">To The Local Coffee Shop - Au Café du Coin</h3>
+                <div class="episode-level">Beginner 04</div>
+            </div>
+            <a href="https://open.spotify.com/episode/39aIxY3cBGnsRinRh3MyIZ" class="button" target="_blank">Listen on Spotify</a>
+        </div>
+
+        <div class="episode">
+            <div class="episode-info">
+                <h3 class="episode-title">The Sunday Market</h3>
+                <div class="episode-level">Beginner 05</div>
+            </div>
+            <a href="https://open.spotify.com/episode/33KpMcdKeGpseedWfNr5SD" class="button" target="_blank">Listen on Spotify</a>
+        </div>
+
+        <div class="episode">
+            <div class="episode-info">
+                <h3 class="episode-title">Buying Furniture - Acheter des Meubles</h3>
+                <div class="episode-level">Beginner 06</div>
+            </div>
+            <a href="https://open.spotify.com/episode/6HdzfOP8JqGv0TTtGxfwed" class="button" target="_blank">Listen on Spotify</a>
+        </div>
+
+        <div class="episode">
+            <div class="episode-info">
+                <h3 class="episode-title">Hiking The Coastal Path - Randonnée sur le Sentier du Littoral</h3>
+                <div class="episode-level">Beginner 07</div>
+            </div>
+            <a href="https://open.spotify.com/episode/6Pv4mcJY8qgoOP8KLQyNKd" class="button" target="_blank">Listen on Spotify</a>
+        </div>
+
+        <div class="episode">
+            <div class="episode-info">
+                <h3 class="episode-title">Covoiturage vers Biarritz - Carpool to Biarritz</h3>
+                <div class="episode-level">Beginner 08</div>
+            </div>
+            <a href="https://open.spotify.com/episode/5HysUdyV6wIrMmjoPOG7XW" class="button" target="_blank">Listen on Spotify</a>
+        </div>
+
+        <div class="episode">
+            <div class="episode-info">
+                <h3 class="episode-title">An Unexpected Weekend in Biarritz - Un Weekend inattendu à Biarritz</h3>
+                <div class="episode-level">Beginner 09</div>
+            </div>
+            <a href="https://open.spotify.com/episode/4IuoGukMevv4YVEBxk5DRe" class="button" target="_blank">Listen on Spotify</a>
+        </div>
+
+        <div class="episode">
+            <div class="episode-info">
+                <h3 class="episode-title">A Day at the Beach - Une Journée à la Plage</h3>
+                <div class="episode-level">Beginner 10</div>
+            </div>
+            <a href="https://open.spotify.com/episode/2wc7g8pEu8UAUFs8ICWAVo" class="button" target="_blank">Listen on Spotify</a>
+        </div>
+
+        <div class="episode">
+            <div class="episode-info">
+                <h3 class="episode-title">The Lost Dog - Le Chien Perdu</h3>
+                <div class="episode-level">Beginner 11</div>
+            </div>
+            <a href="https://open.spotify.com/episode/5vKWriOGlKJ0HPtzGtst2X" class="button" target="_blank">Listen on Spotify</a>
+        </div>
+
     </div>
 </body>
 </html>
