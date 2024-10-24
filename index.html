@@ -31,6 +31,7 @@
             text-align: center;
             margin-bottom: 30px;
             font-size: 24px;
+            font-weight: normal;
         }
 
         .progress-bar {
@@ -39,6 +40,14 @@
             background: #eee;
             border-radius: 5px;
             margin-bottom: 15px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            width: 0%;
+            height: 100%;
+            background: #03015b;
+            transition: width 0.3s ease;
         }
 
         .progress-text {
@@ -59,6 +68,7 @@
             margin-bottom: 20px;
             cursor: pointer;
             text-align: center;
+            font-weight: normal;
         }
 
         .episode {
@@ -66,6 +76,15 @@
             border-radius: 10px;
             padding: 20px;
             margin-bottom: 15px;
+        }
+
+        .episode.completed {
+            background: #f8f8f8;
+        }
+
+        .episode.completed .button.complete {
+            background: #eee;
+            color: #666;
         }
 
         .episode-header {
@@ -107,6 +126,7 @@
             align-items: center;
             justify-content: center;
             gap: 8px;
+            font-weight: normal;
         }
 
         .button.complete {
@@ -153,8 +173,87 @@
             </div>
         </div>
 
-        <!-- Continue with all other episodes following the same pattern -->
+        <div class="episode">
+            <div class="episode-header">
+                <div class="episode-code">S02-EP02</div>
+                <div class="episode-level">Beginner 02</div>
+            </div>
+            <div class="episode-title">A Cooking Lesson - Une leçon de cuisine</div>
+            <div class="button-group">
+                <button class="button complete">Mark as Complete</button>
+                <a href="https://open.spotify.com/episode/2TpmEqW3hZdKfqYZsolT2u" target="_blank" class="button spotify">
+                    <svg class="spotify-logo" viewBox="0 0 24 24">
+                        <path fill="currentColor" d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/>
+                    </svg>
+                    Listen on Spotify
+                </a>
+            </div>
+        </div>
+
+        <!-- Add remaining episodes following the same pattern -->
 
     </div>
+
+    <script>
+        // Load saved progress from localStorage
+        let completedEpisodes = new Set(JSON.parse(localStorage.getItem('completedEpisodes')) || []);
+        const totalEpisodes = 11;
+
+        // Update progress display and progress bar
+        function updateProgress() {
+            const progress = (completedEpisodes.size / totalEpisodes) * 100;
+            document.querySelector('.progress-fill').style.width = `${progress}%`;
+            document.querySelector('.progress-text').textContent = 
+                `${progress.toFixed(1)}% Complete (${completedEpisodes.size} of ${totalEpisodes} episodes)`;
+        }
+
+        // Add click handlers to all "Mark as Complete" buttons
+        document.querySelectorAll('.button.complete').forEach((button, index) => {
+            const episodeId = index + 1;
+            
+            // Set initial state based on saved progress
+            if (completedEpisodes.has(episodeId)) {
+                button.textContent = 'Mark as Incomplete';
+                button.parentElement.parentElement.classList.add('completed');
+            }
+
+            button.addEventListener('click', () => {
+                if (completedEpisodes.has(episodeId)) {
+                    // Remove from completed
+                    completedEpisodes.delete(episodeId);
+                    button.textContent = 'Mark as Complete';
+                    button.parentElement.parentElement.classList.remove('completed');
+                } else {
+                    // Add to completed
+                    completedEpisodes.add(episodeId);
+                    button.textContent = 'Mark as Incomplete';
+                    button.parentElement.parentElement.classList.add('completed');
+                }
+                
+                // Save to localStorage
+                localStorage.setItem('completedEpisodes', JSON.stringify([...completedEpisodes]));
+                updateProgress();
+            });
+        });
+
+        // Share progress functionality
+        document.querySelector('.share-button').addEventListener('click', () => {
+            const progress = (completedEpisodes.size / totalEpisodes) * 100;
+            const text = `I've completed ${completedEpisodes.size} episodes (${progress.toFixed(1)}%) of French From the Start Season 2!`;
+            
+            if (navigator.share) {
+                navigator.share({
+                    title: 'My French Learning Progress',
+                    text: text,
+                    url: window.location.href
+                }).catch(console.error);
+            } else {
+                window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(window.location.href)}`, '_blank');
+            }
+        });
+
+        // Initial progress update
+        updateProgress();
+    </script>
 </body>
 </html>
